@@ -1,0 +1,122 @@
+{
+  "project": "recovered-material-offtake",
+  "version": "2026-09-synthetic-v1",
+  "synthetic": true,
+  "tables": [
+    {
+      "name": "lots",
+      "key": "id",
+      "refs": {},
+      "fields": {
+        "id": "原料批次",
+        "source": "来源主体",
+        "material": "材质",
+        "wet_kg": "可见湿重",
+        "received_at": "接收时点",
+        "forbidden_tags": "已知用途限制"
+      },
+      "path": "data/lots.jsonl",
+      "rows": 24,
+      "sha256": "9bbec18513bfa207a243bd76ba739cae52ae58164e75fe3f3c076a82eb429ad6"
+    },
+    {
+      "name": "assays",
+      "key": "id",
+      "refs": {
+        "lot": "lots"
+      },
+      "fields": {
+        "id": "检测身份",
+        "lot": "料批",
+        "sample_stratum": "取样层",
+        "sampling_basis": "random_mass随机质量取样、targeted定向取样",
+        "represented_wet_kg": "代表质量范围",
+        "moisture_fraction": "湿基含水率",
+        "impurity_fraction_dry": "干基杂质率",
+        "polymer_fraction_dry": "干基聚合物成分，未测为空",
+        "known_at": "获知时间",
+        "supersedes": "明确替代的检测身份"
+      },
+      "path": "data/assays.jsonl",
+      "rows": 72,
+      "sha256": "b0940ad7e3a0405fed77c29138c5d801ac6c303073c6e999f64b6f68694080bc"
+    },
+    {
+      "name": "trials",
+      "key": "id",
+      "refs": {},
+      "fields": {
+        "id": "试验身份",
+        "recipe": "配方类别",
+        "trial_lot": "独立试验批身份",
+        "input_wet_kg": "湿基投入",
+        "moisture": "湿基含水率",
+        "impurity": "干基杂质率",
+        "saleable_dry_kg": "可售干重",
+        "byproduct_kg": "副产物湿重",
+        "cost_cents": "加工费用",
+        "known_at": "资料获知时间",
+        "fold": "预留开发或后续核对范围"
+      },
+      "path": "data/trials.jsonl",
+      "rows": 120,
+      "sha256": "42f1e0165ee89b99cd9ec9b075d97961d3cf26c243faf176c8108c1eb9904554"
+    },
+    {
+      "name": "inquiries",
+      "key": "id",
+      "refs": {},
+      "fields": {
+        "id": "询价身份",
+        "material": "材质",
+        "dry_kg": "需求干重",
+        "minimum_polymer": "最低干基成分，非适用为空",
+        "max_impurity": "最高干基杂质",
+        "deadline": "最晚交付日",
+        "truck_dry_kg": "不可拆交付单位",
+        "cents_per_dry_kg": "承购单价",
+        "reject_penalty_cents": "拒收损失",
+        "banned_sources": "禁止来源",
+        "risk_limit": "可接受缺交概率上限"
+      },
+      "path": "data/inquiries.jsonl",
+      "rows": 8,
+      "sha256": "abe5b3916c9cecdfc1f5bfd0ff15e0ca7b175fa1954216ac8bc454d9fc40c3ca"
+    },
+    {
+      "name": "capacity",
+      "key": "id",
+      "refs": {},
+      "fields": {
+        "id": "日能力身份",
+        "day": "加工日",
+        "wet_kg": "湿基最大加工量",
+        "recipes": "可用配方",
+        "cost_cents": "基础班次成本"
+      },
+      "path": "data/capacity.jsonl",
+      "rows": 11,
+      "sha256": "e4e49b6eaa3641ec867e1615c583bc886494d6e0a773312b2027c4f6ef2d25cc"
+    },
+    {
+      "name": "actuals",
+      "key": "id",
+      "refs": {
+        "lot": "lots",
+        "order": "inquiries"
+      },
+      "fields": {
+        "id": "回执身份",
+        "lot": "来源料批",
+        "order": "对应承购",
+        "kind": "加工或客户复检",
+        "quantity_kg": "实际作用数量",
+        "observed_impurity": "实测干基杂质，未知为空",
+        "known_at": "获知时间"
+      },
+      "path": "data/actuals.jsonl",
+      "rows": 2,
+      "sha256": "ad66547d23c89b65db5cb3308f2606370a3c8d96cafa0c7b8995681d618a3c68"
+    }
+  ]
+}

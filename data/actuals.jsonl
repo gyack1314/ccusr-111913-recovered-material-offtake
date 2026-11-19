@@ -1,0 +1,2 @@
+{"id":"E1","lot":"L001","order":"O1","kind":"processed","quantity_kg":600,"observed_impurity":null,"known_at":"2026-09-20T09:00:00+08:00"}
+{"id":"E2","lot":"L002","order":"O2","kind":"customer_assay","quantity_kg":300,"observed_impurity":0.12,"known_at":"2026-09-22T09:00:00+08:00"}
