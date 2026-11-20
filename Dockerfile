@@ -4,4 +4,6 @@ COPY requirements.txt .
 RUN python -m pip install --no-cache-dir -r requirements.txt
 COPY . .
 ENV PYTHONDONTWRITEBYTECODE=1
-CMD ["python", "-m", "support.inspect_data"]
+# 默认运行完整业务演示；资料体检仍可用
+# docker run --rm recovery-data python -m recovery check
+CMD ["python", "-m", "recovery", "demo"]
